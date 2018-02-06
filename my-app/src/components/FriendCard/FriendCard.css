@@ -1,15 +1,18 @@
 .card {
-  background: #fff;
+  background-size: cover;
   border-radius: 2px;
-  height: 325px;
+  height: 250px;
+  width: 250px;
   margin: 1rem;
   position: relative;
-  width: 325px;
-  box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+  /* box-shadow: 0 3px 6px #999, 0 3px 6px #999; */
   text-align: left;
+  border: 3px solid #000;
 }
 
-.card > .img-container {
+
+
+/*card > .img-container {
   height: 60%;
   overflow: hidden;
   text-align: center;
@@ -31,9 +34,9 @@
 
 .card > .content > ul > li {
   margin-top: 18px;
-}
+} */
 
-.card > .remove {
+/* .card > .remove {
   color: #ff1744;
   font-size: 48px;
   position: absolute;
@@ -44,4 +47,4 @@
 
 .card > .remove:hover {
   color: #d50000;
-}
+} */
