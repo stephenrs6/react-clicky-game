@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import FriendCard from "./components/FriendCard";
-import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
+import Header from "./components/Header";
 import friends from "./friends.json";
 import "./App.css";
 
@@ -10,17 +9,18 @@ class App extends Component {
   state = {
     friends,
     score: 0,
-    clickCardId: 0
+    topScore: 0
+    // clickCardId: 0
   };
 
 
 
   handleClick = friendOnClick => {
-    
+
     // if you have clicked on a 
     // card before 
     // the clicked state will be true
-    if(friendOnClick.clicked === true) {
+    if (friendOnClick.clicked === true) {
       console.log("Clicked twice");
       // reset the score
       this.setState({
@@ -30,14 +30,21 @@ class App extends Component {
       //otherwise up the score by one
       this.setState({
         score: this.state.score + 1
+        
       });
+      if (this.state.score === this.state.topScore){
+        this.setState({
+          topScore: this.state.topScore + 1
+        })
+      }
+
     }
-    
+
     // setting the clicked value 
     // of the clicked friend to true
     this.state.friends.forEach(friend => {
-      if(friend.id === friendOnClick.id) {
-        
+      if (friend.id === friendOnClick.id) {
+
         // set that friend.clicked to true
         friend.clicked = true;
 
@@ -48,8 +55,25 @@ class App extends Component {
 
     });
 
+    // this.state.friends.forEach(updateScore => {
+    //   console.log(updateScore);
+    //   if (this.state.score > this.state.topScore) {
 
-    
+    //     // set that friend.clicked to true
+    //     this.state.score = this.state.topScore;
+
+    //     this.setState({
+    //       friends
+    //     });
+    //   }
+
+    // });
+
+    // const friendsNameArray = this.state.friends.map(friend => { friend.name });
+    // console.log(friendsNameArray);
+
+
+
     // check whether button has been clicked
     // this.setState({
     //   cardIdArray : [...this.state.cardIdArray, id]
@@ -108,15 +132,10 @@ class App extends Component {
   // Map over this.state.friends and render a FriendCard component for each friend object
   render() {
     return (
-      <Wrapper>
-        <Title>Clicky Game
-        <div>
-            Score: {this.state.score}
-            |
-          Top Score:
-        </div>
-        </Title>
-
+      <div>
+        <Header score = {this.state.score} 
+        topScore = {this.state.topScore}
+        />
         {this.state.friends.map(friend => (
           <FriendCard
             handleClick={this.handleClick}
@@ -127,9 +146,10 @@ class App extends Component {
             clicked={friend.clicked}
           />
         ))}
-      </Wrapper>
+      </div>
     );
   }
 }
+
 
 export default App;
